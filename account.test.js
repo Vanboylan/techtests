@@ -111,4 +111,12 @@ describe("Account", () => {
     expect(account.getBalance()).toEqual(
         "date || credit || debit || balance/n24/10/2022||50.00||        ||50.00/n24/10/2022||50.00||        ||100.00/n24/10/2022||       ||40.00||60.00/n24/10/2022||10.00||        ||70.00/n24/10/2022||       ||20.00||50.00/n24/10/2022||       ||40.00||10.00/n");
   });
+  it("does not allow 0 to be  as withdrawn", () => {
+    const account = new Account();
+    account.addBalance(50);
+    account.withdrawBalance(0)
+    expect(account.getBalance()).toEqual(
+      "date || credit || debit || balance/n24/10/2022||50.00||        ||50.00/n"
+    );
+  });
 });
