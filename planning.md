@@ -26,12 +26,12 @@
 *Add money:*
 
 Argument = amount
-Result = amount added to Balance, hash of {date:, amount:, type:} added to History. type: credit or debit
+Result = amount added to Balance, array of [date, amount] added to History.
 
 *Withdraw money:* 
 
 Argument = amount
-Result = amount added to Balance, hash of {date:, amount:, type:} added to History.
+Result = amount added to Balance, hash of [date, amount] added to History - if withdraw, amount is made negative.
 
 *Get balance:* 
 
