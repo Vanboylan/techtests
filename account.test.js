@@ -25,11 +25,11 @@ describe('Account', () => {
         account.addBalance(1-4)
         expect(account.getBalance()).toEqual("date || credit || debit || balance/n")
     });
-    // it('rejects a negative credit amount', () => {
-    //     const account = new Account;
-    //     account.addBalance(-100)
-    //     expect(account.getBalance()).toEqual("date || credit || debit || balance/n")
-    // });
+    it('rejects a negative credit amount', () => {
+        const account = new Account;
+        account.addBalance(-100)
+        expect(account.getBalance()).toEqual("date || credit || debit || balance/n")
+    });
     // it('adds a current date to the balance statement', () => {
     //     const account = new Account;
     //     account.addBalance(10)
