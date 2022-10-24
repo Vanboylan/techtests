@@ -15,6 +15,12 @@ class Account {
     }
     return balanceString;
   };
+  balanceCheck = () => {
+    this.balance = 0;
+    this.history.forEach((transaction) => {
+        this.balance += transaction[1];})
+        return this.balance
+  }
   formatString = (transactionArray) => {
     if (transactionArray[1] > 0) {
       return `${transactionArray[0]}||${transactionArray[1].toFixed(2)}||        ||${this.balance.toFixed(2)}/n`;
@@ -59,7 +65,7 @@ class Account {
     }
   };
   withdrawBalance = (amount) => {
-    if (this.checkInput(amount) === true) {
+    if (this.balanceCheck() - amount >= 0 && this.checkInput(amount) === true) {
       let withdrawal = amount * -1;
       let transaction = [this.date, withdrawal];
       this.history.push(transaction);
