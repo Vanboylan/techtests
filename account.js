@@ -30,6 +30,12 @@ class Account {
       }/n`;
     }
   };
+  decPlaceCheck = (input) => {
+    if (input.toString().includes('.'))
+    {return input.toString().split('.')[1].length <= 2}
+    else
+    {return true}
+  }
   similarityCheck = (input) => { /*test for similarity if input includes mathematical functions*/ 
     let inputString = input.toString();
     return inputString === inputString.replace(/[^0-9.]/g, '')
@@ -48,7 +54,8 @@ class Account {
     {return false}
   }
   checkInput = (input) => {
-    if (this.stringCheck(input) &&
+    if (this.decPlaceCheck(input) &&
+    this.stringCheck(input) &&
     this.similarityCheck(input) &&
       this.numCheck(input) &&
       input > 0 /*not allowing 0 balance to be added*/
