@@ -78,5 +78,16 @@ describe("Account", () => {
     account.withdrawBalance(40);
     expect(account.getBalance()).toEqual(
         "date || credit || debit || balance/n24/10/2022||50||        ||50/n24/10/2022||       ||40||10/n");
-  })
+  });
+  it("allows a mix of withdrawals and additions to be made", () => {
+    const account = new Account;
+    account.addBalance(50);
+    account.addBalance(50);
+    account.withdrawBalance(40);
+    account.addBalance(10);
+    account.withdrawBalance(20);
+    account.withdrawBalance(40);
+    expect(account.getBalance()).toEqual(
+        "date || credit || debit || balance/n24/10/2022||50||        ||50/n24/10/2022||50||        ||100/n24/10/2022||       ||40||60/n24/10/2022||10||        ||70/n24/10/2022||       ||20||50/n24/10/2022||       ||40||10/n");
+  });
 });
