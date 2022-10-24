@@ -8,14 +8,14 @@ describe("Account", () => {
       "date || credit || debit || balance/n"
     );
   });
-  it("allows a balance to be added", () => {
+  it("allows a balance to be added, displaying today's date", () => {
     const account = new Account();
     account.addBalance(500);
     expect(account.getBalance()).toEqual(
       "date || credit || debit || balance/n24/10/2022||500||        ||500/n"
     );
   });
-  it("allows a balance to be added", () => {
+  it("allows a balance to be added, displaying today's date", () => {
     const account = new Account();
     account.addBalance(10);
     expect(account.getBalance()).toEqual(
@@ -72,9 +72,11 @@ describe("Account", () => {
         "date || credit || debit || balance/n24/10/2022||50||        ||50/n24/10/2022||100||        ||150/n24/10/2022||70||        ||220/n24/10/2022||40||        ||260/n24/10/2022||30||        ||290/n"
     );
   });
-  // it('adds a current date to the balance statement', () => {
-  //     const account = new Account;
-  //     account.addBalance(10)
-  //     expect(account.getBalance()).toEqual("date || credit || debit || balance/n       ||10||       ||10/n")
-  // });
+  it("allows a withdrawal to be made", () => {
+    const account = new Account;
+    account.addBalance(50);
+    account.withdrawBalance(40);
+    expect(account.getBalance()).toEqual(
+        "date || credit || debit || balance/n24/10/2022||50||        ||50/n24/10/2022||       ||40||10/n");
+  })
 });
