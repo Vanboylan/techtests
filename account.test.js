@@ -125,4 +125,11 @@ describe("Account", () => {
     expect(account.getBalance()).toEqual(
       "date || credit || debit || balance/n")
   })
+  it("rejects a balance with more than two decimal places", () => {
+    const account = new Account();
+    account.addBalance(500.255);
+    expect(account.getBalance()).toEqual(
+      "date || credit || debit || balance/n"
+    );
+  });
 });
