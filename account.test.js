@@ -1,6 +1,7 @@
 const Account = require("./Account");
 
 describe("Account", () => {
+    /* Add balance tests */
   it("initially does not display a balance", () => {
     const account = new Account();
     expect(account.getBalance()).toEqual(
@@ -49,6 +50,17 @@ describe("Account", () => {
       "date || credit || debit || balance/n"
     );
   });
+  it("allows multiple balances to be added", () => {
+    const account = new Account;
+    account.addBalance(50);
+    expect(account.getBalance()).toEqual(
+        "date || credit || debit || balance/n       ||50||       ||50/n"
+    );
+    account.addBalance(30);
+    expect(account.getBalance()).toEqual(
+        "date || credit || debit || balance/n       ||50||       ||50/n       ||30||       ||30/n"
+    );
+  })
   // it('adds a current date to the balance statement', () => {
   //     const account = new Account;
   //     account.addBalance(10)

@@ -1,10 +1,15 @@
 class Account {
+    constructor() {
+        this.history = []
+    }
   getBalance = () => {
     let balanceString = "date || credit || debit || balance/n";
-    if (this.creditString === undefined) {
-      return balanceString;
+    if (this.history.length > 0) {
+     let transactionHistory = this.history.reduce((partialStatement, nextLine) => 
+      partialStatement += nextLine);
+      return balanceString + transactionHistory;
     } else {
-      return balanceString + this.creditString;
+      return balanceString;
     }
   };
   addBalance = (credit) => {
@@ -14,10 +19,9 @@ class Account {
       Number.isInteger(credit) &&
       credit > 0
     ) {
-      this.creditString = `       ||${credit}||       ||${credit}/n`;
-    } else {
-      this.creditString = undefined;
-    }
+      let creditFormat = `       ||${credit}||       ||${credit}/n`;
+      this.history.push(creditFormat)
+    };
   };
 }
 
