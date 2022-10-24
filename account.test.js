@@ -119,4 +119,10 @@ describe("Account", () => {
       "date || credit || debit || balance/n24/10/2022||50.00||        ||50.00/n"
     );
   });
+  it("does not allow you to withdraw below zero", () => {
+    const account = new Account();
+    account.withdrawBalance(100)
+    expect(account.getBalance()).toEqual(
+      "date || credit || debit || balance/n")
+  })
 });
