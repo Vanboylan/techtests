@@ -1,0 +1,27 @@
+{
+  "name": "js-techtests",
+  "version": "1.0.0",
+  "description": "Techtests",
+  "main": "account.test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vanboylan/techtests.git"
+  },
+  "keywords": [
+    "tests",
+    "tdd",
+    "account",
+    "bank",
+    "js",
+    "javascript"
+  ],
+  "author": "Vanboylan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vanboylan/techtests/issues"
+  },
+  "homepage": "https://github.com/Vanboylan/techtests#readme"
+}
