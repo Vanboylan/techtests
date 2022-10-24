@@ -7,7 +7,8 @@ class Account {
         {return balanceString + this.creditString}
     };
     addBalance = (credit) => {
-        if (Number.isInteger(credit))
+        let creditToString = credit.toString()
+        if (creditToString === creditToString.replace(/\D/g,'') && Number.isInteger(credit))
         {this.creditString = `       ||${credit}||       ||${credit}/n`;}
         else
         {this.creditString = undefined};
