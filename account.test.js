@@ -1,4 +1,5 @@
 const Account = require("./Account");
+jest.useFakeTimers().setSystemTime(new Date("2022-10-24"))
 
 describe("Account", () => {
     /* Add balance tests */
