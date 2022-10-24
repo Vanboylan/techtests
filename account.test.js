@@ -15,4 +15,9 @@ describe('Account', () => {
         account.addBalance(10)
         expect(account.getBalance()).toEqual("date || credit || debit || balance/n       ||10||       ||10/n")
     });
+    it('rejects a balance that is not an integer', () => {
+        const account = new Account;
+        account.addBalance('potato')
+        expect(account.getBalance()).toEqual("date || credit || debit || balance/n")
+    });
 });

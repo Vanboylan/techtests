@@ -7,7 +7,10 @@ class Account {
         {return balanceString + this.creditString}
     };
     addBalance = (credit) => {
-        this.creditString = `       ||${credit}||       ||${credit}/n`;
+        if (Number.isInteger(credit))
+        {this.creditString = `       ||${credit}||       ||${credit}/n`;}
+        else
+        {this.creditString = undefined};
     }
 };
 
