@@ -22,14 +22,16 @@ class Account {
     }
   };
   balanceCheck = () => {
-    if (this.history.length === 0) {return "0.00"}
-      this.balance = 0;
-      this.history.forEach((transaction) => {
-        transaction.type === "add"
-          ? (this.balance += transaction.amount)
-          : (this.balance -= transaction.amount);
-      });
-      return this.balance.toFixed(2);
+    if (this.history.length === 0) {
+      return "0.00";
+    }
+    this.balance = 0;
+    this.history.forEach((transaction) => {
+      transaction.type === "add"
+        ? (this.balance += transaction.amount)
+        : (this.balance -= transaction.amount);
+    });
+    return this.balance.toFixed(2);
   };
   checkInput = (input) => {
     return (

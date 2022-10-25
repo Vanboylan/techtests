@@ -153,9 +153,10 @@ describe("Account", () => {
       expect(consoleSpy).toHaveBeenCalledWith('Incorrect amount');
       account.withdrawBalance(40);
       account.addBalance(10);
-      account.withdrawBalance(20);
+      account.withdrawBalance(5.32);
       account.withdrawBalance(40);
-      expect(account.balanceCheck()).toEqual("10.00")
-      expect(account.history.length).toEqual(6)
+      expect(consoleSpy).toHaveBeenCalledWith('Incorrect amount');
+      expect(account.balanceCheck()).toEqual("14.68")
+      expect(account.history.length).toEqual(4)
     });
 });
