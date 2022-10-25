@@ -1,42 +1,60 @@
 **Classes required:**
 
-(User class not required in readme?)
+1. User
 
-1. Account
+2. Account
+
 
 /////////////////////////////////////////////////////////////////////////////////
 
 **Methods required:**
 
-(if User - add account)
+*User* - add account, get statement
 
-*Account* - add money, withdraw money, get balance
+*Account* - add, withdraw, get transactions
 
 /////////////////////////////////////////////////////////////////////////////////
 
 **Constructors required:**
 
-*Balance* - integer
-*History* - array
+*User*
+this.accounts = array
+
+*Account*
+this.transactions = array
+
 
 /////////////////////////////////////////////////////////////////////////////////
 
 **Methods breakdown:**
+**User**
 
-*Add money:*
+*Add account* 
+
+argument = account
+Result = push the account object into the array
+
+*get statement*
+
+No argument
+Result = formatted statement
+
+**Account**
+
+*Add money/Withdraw money*
 
 Argument = amount
-Result = amount added to Balance, array of [date, amount] added to History.
+Result = {date:(today), amount:(amount), type:(add or withdraw)}
 
 *Withdraw money:* 
 
 Argument = amount
 Result = amount added to Balance, hash of [date, amount] added to History - if withdraw, amount is made negative.
 
-*Get balance:* 
+*Get transactions:* 
 
 No argument required
-Result = statement printout of withdrawals
+Result = return the array of hash objects
 
 //////////////////////////////////////////////////////////////////////////////////
 

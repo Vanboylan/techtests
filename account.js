@@ -2,93 +2,62 @@ class Account {
   constructor() {
     this.date = new Date().toLocaleDateString();
     this.history = [];
-    this.balance = 0;
   }
-  getBalance = () => {
-    let balanceString = "date || credit || debit || balance\n";
-    if (this.history.length > 0) {
-      this.balance = 0;
-      this.history.forEach((transaction) => {
-        this.balance += transaction[1];
-        balanceString += this.formatString(transaction);
-      });
-    }
-    console.log(balanceString);
-    return balanceString;
-  };
   addBalance = (amount) => {
     if (this.checkInput(amount) === true) {
-      let transaction = [this.date, amount];
+      let transaction = { date: this.date, amount: amount, type: "add" };
       this.history.push(transaction);
-      console.log(`${amount} added to your account`);
+      console.log(`${amount.toFixed(2)} added to your account`);
+    } else {
+      console.log("Incorrect amount");
     }
   };
   withdrawBalance = (amount) => {
     if (this.balanceCheck() - amount >= 0 && this.checkInput(amount) === true) {
-      let withdrawal = amount * -1;
-      let transaction = [this.date, withdrawal];
+      let transaction = { date: this.date, amount: amount, type: "withdraw" };
       this.history.push(transaction);
-      console.log(`${amount} withdrawn from your account`);
+      console.log(`${amount.toFixed(2)} withdrawn from your account`);
+    } else {
+      console.log("Incorrect amount");
     }
   };
   balanceCheck = () => {
-    this.balance = 0;
-    this.history.forEach((transaction) => {
-      this.balance += transaction[1];
-    });
-    return this.balance;
+    if (this.history.length === 0) {return "0.00"}
+      this.balance = 0;
+      this.history.forEach((transaction) => {
+        transaction.type === "add"
+          ? (this.balance += transaction.amount)
+          : (this.balance -= transaction.amount);
+      });
+      return this.balance.toFixed(2);
   };
   checkInput = (input) => {
-    if (
+    return (
       this.decPlaceCheck(input) &&
-      this.stringCheck(input) &&
+      this.typeCheck(input) &&
       this.similarityCheck(input) &&
       this.numCheck(input) &&
-      input > 0 //not allowing 0 balance to be added
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+      input > 0
+    ); //not allowing 0 balance to be added
   };
-  formatString = (transactionArray) => {
-    if (transactionArray[1] > 0) {
-      return `${transactionArray[0]}||${transactionArray[1].toFixed(
-        2
-      )}||        ||${this.balance.toFixed(2)}\n`;
-    } else {
-      return `${transactionArray[0]}||       ||${(
-        transactionArray[1] * -1
-      ).toFixed(2)}||${this.balance.toFixed(2)}\n`;
-    }
-  };
+  //test for more than one decimal point
   decPlaceCheck = (input) => {
-    if (input.toString().includes(".")) {
-      return input.toString().split(".")[1].length <= 2;
-    } else {
-      return true;
-    }
+    return input.toString().includes(".")
+      ? input.toString().split(".")[1].length <= 2
+      : true;
   };
+  //test for similarity if input includes mathematical functions
   similarityCheck = (input) => {
-    //test for similarity if input includes mathematical functions
     let inputString = input.toString();
     return inputString === inputString.replace(/[^0-9.]/g, "");
   };
-  stringCheck = (input) => {
-    console.log(typeof input);
-    if (typeof input === "number") {
-      return true;
-    } else {
-      return false;
-    }
+  //check to ensure input is a number
+  typeCheck = (input) => {
+    return typeof input === "number";
   };
+  //testing for input being an integer or float
   numCheck = (input) => {
-    //testing for input being an integer or float
-    if (Number.isInteger(Math.floor(input)) || Number.isInteger(input)) {
-      return true;
-    } else {
-      return false;
-    }
+    return Number.isInteger(Math.floor(input)) || Number.isInteger(input);
   };
 }
 
