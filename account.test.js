@@ -1,7 +1,6 @@
 const Account = require("./Account");
-let date = "2022-10-24"
-let date1 = "2023-01-01"
-jest.useFakeTimers().setSystemTime(new Date(date));
+const date = "2022-10-24"
+beforeEach(() => {jest.useFakeTimers().setSystemTime(new Date(date));})
 const consoleSpy = jest.spyOn(console, 'log');
 
 describe("Account", () => {
@@ -159,20 +158,5 @@ describe("Account", () => {
       expect(consoleSpy).toHaveBeenCalledWith('Incorrect amount');
       expect(account.balanceCheck()).toEqual("14.68")
       expect(account.history.length).toEqual(4)
-    });
-    it("allows a balance to be added, displaying different dates", () => {
-      date1 = (new Date('2023-01-10T01:00:00')).getTime()
-      date2 = (new Date('2023-01-13T01:00:00')).getTime()
-      date3 = (new Date('2023-01-14T01:00:00')).getTime()
-      Date.prototype.getTime = function() { return date1 };
-      const account = new Account();
-      account.addBalance(1000);
-      Date.prototype.getTime = function() { return date2 };
-      account.addBalance(2000)
-      Date.prototype.getTime = function() { return date3 };
-      account.withdrawBalance(500)
-      expect(account.history[0].date).toEqual('10/01/2023')
-      expect(account.history[1].date).toEqual('13/01/2023')
-      expect(account.history[2].date).toEqual('14/03/2023')
     });
 });
