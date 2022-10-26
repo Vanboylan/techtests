@@ -1,14 +1,18 @@
 const Account = require('./Account');
-const User = require('./User')
+const User = require('./User');
 
-clock = sinon.useFakeTimers(new Date(2023,1,10).getTime());
+date1 = (new Date('2023-01-10T01:00:00')).getTime()
+date2 = (new Date('2023-01-13T01:00:00')).getTime()
+date3 = (new Date('2023-01-14T01:00:00')).getTime()
+
 const testUser = new User;
 const testAccount = new Account;
+Date.prototype.getTime = function() { return date1 };
 testAccount.addBalance(1000);
-clock = sinon.useFakeTimers(new Date(2023,0,13).getTime());
+Date.prototype.getTime = function() { return date2 };
 testAccount.addBalance(2000);
-clock = sinon.useFakeTimers(new Date(2011,0,14).getTime());
+Date.prototype.getTime = function() { return date3 };
 testAccount.withdrawBalance(500);
 testUser.addAccount(testAccount);
-testUser.getStatement();
+console.log(testUser.getStatement());
 
