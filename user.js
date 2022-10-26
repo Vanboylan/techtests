@@ -9,9 +9,10 @@ class User {
     return this.formatStatement();
   };
   formatStatement = () => {
-    let balance = 0;
-    let balanceString = "date || credit || debit || balance\n";
+    let allAccountsString = ""
     this.accounts.forEach((account) => {
+        let balance = 0;
+    let balanceString = "date || credit || debit || balance\n";
       account.history.forEach((transaction) => {
         if (transaction.type === "add") {
           balance += transaction.amount;
@@ -21,9 +22,9 @@ class User {
           balance -= transaction.amount;
           balanceString += `${transaction.date}||     ||${transaction.amount.toFixed(2)}||${balance.toFixed(2)}\n`;
         }
-      });
+      });allAccountsString += balanceString;
     });
-    return balanceString;
+    return allAccountsString;
   };
   addAccount = (account) => {
     this.accounts.push(account);
