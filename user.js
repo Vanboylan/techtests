@@ -9,20 +9,20 @@ class User {
     return this.formatStatement();
   };
   formatStatement = () => {
-    let allAccountsString = ""
+    let allAccountsString = "";
     this.accounts.forEach((account) => {
-        let balance = 0;
-    let balanceString = "date || credit || debit || balance\n";
+      let balance = 0;
+      let balanceString = "date || credit || debit || balance\n";
       account.history.forEach((transaction) => {
         if (transaction.type === "add") {
           balance += transaction.amount;
-          balanceString += 
-          `${transaction.date}||${transaction.amount.toFixed(2)}||      ||${balance.toFixed(2)}\n`;
+          balanceString += `${transaction.date}||${transaction.amount.toFixed(2)}||      ||${balance.toFixed(2)}\n`;
         } else {
           balance -= transaction.amount;
-          balanceString += `${transaction.date}||     ||${transaction.amount.toFixed(2)}||${balance.toFixed(2)}\n`;
+          balanceString += `${ transaction.date }||     ||${transaction.amount.toFixed(2)}||${balance.toFixed(2)}\n`;
         }
-      });allAccountsString += balanceString;
+      });
+      allAccountsString += balanceString;
     });
     return allAccountsString;
   };
