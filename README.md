@@ -2,10 +2,7 @@
 
 run:
 
-npm init
-npm install -g jest
-npm install -g esbuild
-npm install -g eslint
+
 npm install
 
 now you can use *node.js* to run the *app.js* file by typing in terminal:
